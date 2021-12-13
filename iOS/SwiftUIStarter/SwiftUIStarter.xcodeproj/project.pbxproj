@@ -325,10 +325,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIStarter/Preview Content\"";
-<<<<<<< HEAD
-=======
 				DEVELOPMENT_TEAM = GG2P773732;
->>>>>>> personal_customizations
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SwiftUIStarter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -336,11 +333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.bentley.sample.SwiftUIStarter;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.carlhinkle.iTwinSwiftUIBasedSample;
->>>>>>> personal_customizations
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -354,10 +347,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIStarter/Preview Content\"";
-<<<<<<< HEAD
-=======
 				DEVELOPMENT_TEAM = GG2P773732;
->>>>>>> personal_customizations
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SwiftUIStarter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -365,11 +355,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.bentley.sample.SwiftUIStarter;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.carlhinkle.iTwinSwiftUIBasedSample;
->>>>>>> personal_customizations
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

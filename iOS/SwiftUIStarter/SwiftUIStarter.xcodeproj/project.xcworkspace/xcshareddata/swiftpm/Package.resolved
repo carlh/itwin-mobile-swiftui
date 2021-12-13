@@ -1,0 +1,70 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AppAuth",
+        "repositoryURL": "https://github.com/openid/AppAuth-iOS.git",
+        "state": {
+          "branch": null,
+          "revision": "01131d68346c8ae552961c768d583c715fbe1410",
+          "version": "1.4.0"
+        }
+      },
+      {
+        "package": "PMKCoreLocation",
+        "repositoryURL": "https://github.com/fallingspirit/CoreLocation",
+        "state": {
+          "branch": null,
+          "revision": "0d7f0e88f3f56a82a79553af651c2dea0f69bbcf",
+          "version": "3.1.2"
+        }
+      },
+      {
+        "package": "PMKFoundation",
+        "repositoryURL": "https://github.com/PromiseKit/Foundation.git",
+        "state": {
+          "branch": null,
+          "revision": "985f17fa69ee0e5b7eb3ff9be87ffc4e05fc0927",
+          "version": "3.4.0"
+        }
+      },
+      {
+        "package": "itwin-mobile-ios",
+        "repositoryURL": "https://github.com/iTwin/mobile-ios-package",
+        "state": {
+          "branch": null,
+          "revision": "4c51b23d7edc592fcee730d3e9e1e372f04c931d",
+          "version": "2.19.28"
+        }
+      },
+      {
+        "package": "itwin-mobile-sdk",
+        "repositoryURL": "https://github.com/iTwin/mobile-sdk.git",
+        "state": {
+          "branch": null,
+          "revision": "fff8a83d2e0774202e6fbb4c109baf1150f005b0",
+          "version": "0.9.8"
+        }
+      },
+      {
+        "package": "PromiseKit",
+        "repositoryURL": "https://github.com/mxcl/PromiseKit",
+        "state": {
+          "branch": null,
+          "revision": "93c8d41ce96ed78f36c3948be396d76f3ca3de1b",
+          "version": "6.16.2"
+        }
+      },
+      {
+        "package": "Reachability",
+        "repositoryURL": "https://github.com/ashleymills/Reachability.swift",
+        "state": {
+          "branch": null,
+          "revision": "c01bbdf2d633cf049ae1ed1a68a2020a8bda32e2",
+          "version": "5.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
