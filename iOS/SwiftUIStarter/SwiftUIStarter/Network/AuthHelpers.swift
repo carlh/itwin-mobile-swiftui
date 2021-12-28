@@ -16,8 +16,6 @@ import SafariServices
 // token and use that if it's valid.  Maybe if I have time I'll figure out how to make it work.
 @MainActor struct AppAuthHelper {
     private static let issuer = URL(string: "https://ims.bentley.com")
-    private static let clientId = getenv("ITMAPPLICATION_CLIENT_ID")
-    private static let scopes = getenv("ITMAPPLICATION_SCOPE")
     
     private static var authState: OIDAuthState?
     static var currentAuthorizationFlow: OIDExternalUserAgentSession?

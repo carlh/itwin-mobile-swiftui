@@ -22,7 +22,7 @@ struct Home: View {
     }
     
     var projectsList: some View {
-        ProjectsList(projects: $vm.projects)
+        ProjectsList()
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

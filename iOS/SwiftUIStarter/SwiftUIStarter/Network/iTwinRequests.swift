@@ -47,25 +47,34 @@ struct ITwinRequests {
         }
     }
     
-    static func allProjects() async throws -> Projects? {
-        var projects: Projects? = nil
-        
-        let queryURL = projectsEndpoint
-        
+    private static func fetchAndDecode<T>(from url: URL, additionalHeaders: [String: String] = [:]) async throws  -> T? where T: Codable {
+        var results: T? = nil
         do {
-            let request = try await addHeaders(to: URLRequest(url: queryURL), with: ["Prefer": "return=representation"])
+            let request = try await addHeaders(to: URLRequest(url: url), with: additionalHeaders)
             let (data, _) = try await URLSession.shared.dataTask(with: request)
             if let data = data {
-                projects = try JSONDecoder().decode(Projects.self, from: data)
+                results = try JSONDecoder().decode(T.self, from: data)
             }
-        
-    
-            
         } catch {
-            print("Failed to prepare the request: \(error.localizedDescription)")
+            print("Failed get get recent projects")
         }
-        
-        return projects
+        return results
+    }
+    
+    static func allProjects() async throws -> Projects? {
+        let queryURL = projectsEndpoint
+        return try await fetchAndDecode(from: queryURL, additionalHeaders: ["Prefer": "return=representation"])
+    }
+    
+    static func recentProjects(count: Int?) async throws -> Projects? {
+        var queryURL = projectsEndpoint.appendingPathComponent("recents")
+        queryURL = queryURL.appendingQueryItem("$top", value: "\(count ?? 10)")
+        return try await fetchAndDecode(from: queryURL, additionalHeaders: ["Prefer": "return=representation"])
+    }
+    
+    static func favoriteProjects() async throws -> Projects? {
+        let queryURL = projectsEndpoint.appendingPathComponent("favorites")
+        return try await fetchAndDecode(from: queryURL, additionalHeaders: ["Prefer": "return=representation"])
     }
     
     static func fetchObjects<T>(url: String) async -> T? where T: Codable {

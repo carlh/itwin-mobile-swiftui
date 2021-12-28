@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ProjectsList: View {
-    @Binding var projects: Projects?
+    @State private var searchString = ""
+    
+    @StateObject private var vm = ViewModel()
+    
     var body: some View {
-        ScrollView {
-            if projects != nil {
-                ForEach(projects!.projects) { project in
+        List {
+            Section {
+                ForEach(searchResults, id: \.id) { project in
                     GroupBox(project.geographicLocation ?? "") {
-                        VStack(alignment: .leading) {
+                        LazyVStack(alignment: .leading) {
                             NavigationLink {
                                 ProjectDetailView(project: project)
                             } label: {
@@ -25,8 +28,40 @@ struct ProjectsList: View {
                         }
                     }
                 }
-            } else {
-                Text("Nothing to see here")
+            } header: {
+                VStack(alignment: .leading) {
+                    Text("Project View")
+                        .font(.title2)
+                        .bold()
+                    Picker(selection: $vm.listMode) {
+                        Text("All")
+                            .tag(ViewModel.ProjectListViewMode.all)
+                        Text("Recent")
+                            .tag(ViewModel.ProjectListViewMode.recents)
+                        Text("Favorites")
+                            .tag(ViewModel.ProjectListViewMode.favorites)
+                    } label: {
+                        Text("Project View")
+                    }
+                    .pickerStyle(.segmented)
+                }
+
+            }
+
+            
+        }
+        .searchable(text: $searchString, placement: SearchFieldPlacement.navigationBarDrawer, prompt: Text("Search"))
+        .task {
+            await vm.fetchProjects()
+        }
+    }
+    
+    var searchResults: [Project] {
+        if searchString.isEmpty {
+            return vm.projectsList
+        } else {
+            return vm.projectsList.filter { project in
+                project.displayName?.localizedCaseInsensitiveContains(searchString) ?? false
             }
         }
     }
@@ -34,6 +69,6 @@ struct ProjectsList: View {
 
 struct ProjectsList_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectsList(projects: .constant(nil))
+        ProjectsList()
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 extension ProjectDetailView {
+    
     @MainActor class ViewModel: ObservableObject {
         let project: Project
         @Published var imodelList: [iModel] = []
@@ -26,6 +27,7 @@ extension ProjectDetailView {
                 print("Got iModels: \(imodelList)")
             }
         }
+        
     }
 
 }
