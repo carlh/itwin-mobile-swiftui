@@ -1,16 +1,16 @@
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-* See LICENSE.md in the project root for license terms and full copyright notice.
-*--------------------------------------------------------------------------------------------*/
-import React from "react";
-import * as base64 from "base64-js";
-import { IModelApp, IModelConnection } from "@bentley/imodeljs-frontend";
-import { ThumbnailProps } from "@bentley/imodeljs-common";
-import { ReloadedEvent } from "@itwin/mobile-sdk-core";
-import { DraggableComponent, IconImage, ResizableBottomPanel, ResizableBottomPanelProps } from "@itwin/mobile-ui-react";
-import { HeaderTitle, i18n, updateBackgroundColor } from "./Exports";
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+import React from 'react';
+import * as base64 from 'base64-js';
+import { IModelApp, IModelConnection } from '@bentley/imodeljs-frontend';
+import { ThumbnailProps } from '@bentley/imodeljs-common';
+import { ReloadedEvent } from '@itwin/mobile-sdk-core';
+import { DraggableComponent, IconImage, ResizableBottomPanel, ResizableBottomPanelProps } from '@itwin/mobile-ui-react';
+import { HeaderTitle, i18n, updateBackgroundColor } from '../../../Exports';
 
-import "./ViewsBottomPanel.scss";
+import './ViewsBottomPanel.scss';
 
 /// Properties for the [[ViewsBottomPanel]] React component.
 export interface ViewsBottomPanelProps extends ResizableBottomPanelProps {
@@ -21,14 +21,14 @@ export interface ViewsBottomPanelProps extends ResizableBottomPanelProps {
 }
 
 /** [[ResizableBottomPanel]] React component that allows the user to select any of the views saved in the iModel.
- * 
+ *
  * This is a relatively simple example of a view selector that shows the view thumbnails.
  */
 export function ViewsBottomPanel(props: ViewsBottomPanelProps) {
   const { iModel, onViewSelected, ...otherProps } = props;
   const [viewSpecs, setViewSpecs] = React.useState<IModelConnection.ViewSpec[]>([]);
   const [thumbnails, setThumbnails] = React.useState<(string | undefined)[]>([]);
-  const viewsLabel = React.useMemo(() => i18n("ViewsBottomPanel", "Views"), []);
+  const viewsLabel = React.useMemo(() => i18n('ViewsBottomPanel', 'Views'), []);
   const reloadedEvent = React.useRef(new ReloadedEvent());
 
   // React effect run during component initialization.
@@ -37,7 +37,7 @@ export function ViewsBottomPanel(props: ViewsBottomPanelProps) {
     const getThumbnailUrl = (thumbnail: ThumbnailProps | undefined) => {
       if (!thumbnail) return undefined;
       const base64String = base64.fromByteArray(thumbnail.image);
-      return "data:image/" + thumbnail.format + ";base64," + base64String;
+      return 'data:image/' + thumbnail.format + ';base64,' + base64String;
     };
     // This function asynchronously loads the thumbnails for all the views in the current iModel.
     const loadThumbnails = async (viewSpecsParam: IModelConnection.ViewSpec[]) => {
@@ -53,7 +53,7 @@ export function ViewsBottomPanel(props: ViewsBottomPanelProps) {
           } catch (ex) {
             return undefined;
           }
-        }
+        };
         // Get the thumbnail image bytes for the current viewSpec.
         const thumbnail = await getThumbnail(viewSpec.id);
         // Convert the thumbnail bytes into a data: URL string (or undefined if there is not thumbnail).
@@ -84,7 +84,9 @@ export function ViewsBottomPanel(props: ViewsBottomPanelProps) {
         localViewSpecs.push({ ...viewSpec, name: view.userLabel ?? viewSpec.name });
       }
       // Sort the ViewSpecs by name using case-insensitive compare.
-      const sortedResult = localViewSpecs.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+      const sortedResult = localViewSpecs.sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }),
+      );
       // Display the loaded ViewSpecs with generic view icons.
       setViewSpecs(sortedResult);
       // Load the thumbnails asynchronously, then display them as they are loaded.
@@ -93,27 +95,40 @@ export function ViewsBottomPanel(props: ViewsBottomPanelProps) {
     loadViewSpecs();
   }, [iModel.views]);
 
-  const handleChangeView = React.useCallback((viewSpec: IModelConnection.ViewSpec) => {
-    const changeView = async () => {
-      const viewState = await iModel.views.load(viewSpec.id);
-      updateBackgroundColor(viewState);
-      IModelApp.viewManager.getFirstOpenView()?.changeView(viewState);
-      onViewSelected?.();
-    };
-    changeView();
-  }, [iModel.views, onViewSelected]);
+  const handleChangeView = React.useCallback(
+    (viewSpec: IModelConnection.ViewSpec) => {
+      const changeView = async () => {
+        const viewState = await iModel.views.load(viewSpec.id);
+        updateBackgroundColor(viewState);
+        IModelApp.viewManager.getFirstOpenView()?.changeView(viewState);
+        onViewSelected?.();
+      };
+      changeView();
+    },
+    [iModel.views, onViewSelected],
+  );
 
   const viewButtons = viewSpecs.map((viewSpec, index) => {
     if (thumbnails.length > index && thumbnails[index]) {
       return (
-        <div className="list-item" key={index} onClick={() => { handleChangeView(viewSpec); }}>
+        <div
+          className="list-item"
+          key={index}
+          onClick={() => {
+            handleChangeView(viewSpec);
+          }}>
           <div>{viewSpec.name}</div>
           <img src={thumbnails[index]} alt="View Thumbnail" />
         </div>
       );
     } else {
       return (
-        <div className="list-item" key={index} onClick={() => { handleChangeView(viewSpec); }}>
+        <div
+          className="list-item"
+          key={index}
+          onClick={() => {
+            handleChangeView(viewSpec);
+          }}>
           <div>{viewSpec.name}</div>
           <IconImage iconSpec="icon-saved-view" size="100px" />
         </div>
@@ -131,11 +146,12 @@ export function ViewsBottomPanel(props: ViewsBottomPanelProps) {
     <ResizableBottomPanel
       {...otherProps}
       className="views-bottom-panel"
-      header={<DraggableComponent className="resizable-panel-header">
-        <HeaderTitle label={viewsLabel} iconSpec="icon-saved-view" />
-      </DraggableComponent>}
-      reloadedEvent={reloadedEvent.current}
-    >
+      header={
+        <DraggableComponent className="resizable-panel-header">
+          <HeaderTitle label={viewsLabel} iconSpec="icon-saved-view" />
+        </DraggableComponent>
+      }
+      reloadedEvent={reloadedEvent.current}>
       <div className="list">
         <div className="list-items">
           {viewButtons}
