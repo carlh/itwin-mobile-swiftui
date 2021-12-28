@@ -13,8 +13,16 @@ struct ProjectsList: View {
         ScrollView {
             if projects != nil {
                 ForEach(projects!.projects) { project in
-                    GroupBox("Project") {
-                        Text(project.displayName ?? "No Name")
+                    GroupBox(project.geographicLocation ?? "") {
+                        VStack(alignment: .leading) {
+                            NavigationLink {
+                                ProjectDetailView(project: project)
+                            } label: {
+                                Text(project.displayName ?? "No Name")
+                                    .font(.title)
+                                    .bold()
+                            }
+                        }
                     }
                 }
             } else {

@@ -14,7 +14,11 @@ struct ITwinRequests {
     
     static let projectsEndpoint = baseUrl.appendingPathComponent("projects/")
     
-    private static func addHeaders(to request: URLRequest) async throws -> URLRequest {
+    /**
+     * This function always adds the auth headers to the request, and optionally any additional headers
+     * (such as Prefer)
+     */
+    private static func addHeaders(to request: URLRequest, with additionalHeaders: [String:String] = [:]) async throws -> URLRequest {
         do {
             let accessToken = try await AppAuthHelper.accessToken()
             guard let accessToken = accessToken else {
@@ -30,6 +34,12 @@ struct ITwinRequests {
                 "Accept": "application/vnd.bentley.itwin-platform.v1+json",
                 "Prefer": "return=minimal"
             ]
+            
+            // Include the additional headers.  Any duplicate keys will replace the defaults.
+            mutableRequest.allHTTPHeaderFields?.merge(additionalHeaders) { current, new in
+                new
+            }
+            
             return mutableRequest as URLRequest
         } catch let error {
             print("An error occurred: \(error.localizedDescription)")
@@ -43,36 +53,35 @@ struct ITwinRequests {
         let queryURL = projectsEndpoint
         
         do {
-            let request = try await addHeaders(to: URLRequest(url: queryURL))
+            let request = try await addHeaders(to: URLRequest(url: queryURL), with: ["Prefer": "return=representation"])
             let (data, _) = try await URLSession.shared.dataTask(with: request)
             if let data = data {
                 projects = try JSONDecoder().decode(Projects.self, from: data)
             }
-            
-//            URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-//                if let error = error {
-//                    print("Error \(error.localizedDescription)")
-//                    return
-//                }
-//                guard let data = data else {
-//                    print("Failed to get any data")
-//                    return
-//                }
-//                do {
-//                    print("Got this data: \(data.base64EncodedString() ?? "Nothing here")")
-//                    let results = try JSONDecoder().decode(Projects.self, from: data)
-//                    print("Fetched data: \(String(describing: results))")
-//                } catch {
-//                    print("Error decoding results: \(error.localizedDescription)")
-//                }
-//
-//            }).resume()
-            
+        
+    
             
         } catch {
             print("Failed to prepare the request: \(error.localizedDescription)")
         }
         
         return projects
+    }
+    
+    static func fetchObjects<T>(url: String) async -> T? where T: Codable {
+        var results: T? = nil
+        
+        do {
+            guard let requestUrl = URL(string: url) else { return results }
+            let request = try await addHeaders(to: URLRequest(url: requestUrl), with: ["Prefer": "return=representation"])
+            let (data, _) = try await URLSession.shared.dataTask(with: request)
+            if let data = data {
+                results = try JSONDecoder().decode(T.self, from: data)
+            }
+            return results
+        } catch {
+            print("Failed to fetch objects for \(url) with error \(error.localizedDescription)")
+            return results
+        }
     }
 }
