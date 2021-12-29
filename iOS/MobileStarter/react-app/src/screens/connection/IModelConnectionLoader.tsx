@@ -15,7 +15,7 @@ interface iModelData {
 
 const IModelConnectionLoader = () => {
   const [iModelData, setIModelData] = useState<iModelData | undefined>(undefined);
-  const [progress, setProgress] = useState<ProgressInfo | number>(0);
+  const [progress, setProgress] = useState<ProgressInfo>({ loaded: 0, percent: 0 });
   const [currentIModelConnection, setCurrentIModelConnection] = useState<IModelConnection | undefined>(undefined);
   const [iModelFilename, setIModelFilename] = useState<string | undefined>(undefined);
 
@@ -29,9 +29,14 @@ const IModelConnectionLoader = () => {
     };
 
     getInfo();
+    /**
+     * IMPORTANT!  Uncomment this block and comment out the `getInfo` call above if
+     * you need time to attach the Safari Web inspector to the process to catch it before
+     * any of the important model loading JS starts executing.
+     */
     // setTimeout(() => {
     //   debugger;
-
+    //   getInfo();
     // }, 20000);
   }, []);
 
@@ -66,15 +71,18 @@ const IModelConnectionLoader = () => {
       },
       undefined,
       (progress: ProgressInfo) => {
+        let percent = progress.percent;
+        if (!percent && progress.total && progress.total > 0) {
+          percent = (progress.loaded / progress.total) * 100;
+        }
+        progress.percent = percent;
         setProgress(progress);
       },
     );
 
     await downloader.downloadPromise;
 
-    const localBriefcases = await NativeApp.getCachedBriefcases(iModelData.iModelId);
-
-    openIModel(localBriefcases[0]);
+    await openDownloadedIModel(iModelData);
   }, [iModelData, openDownloadedIModel]);
 
   const openIModel = async (briefcase: LocalBriefcaseProps) => {
@@ -96,7 +104,7 @@ const IModelConnectionLoader = () => {
         {iModelData && (
           <>
             <h1>Downloading iModel</h1>
-            <p>{progress}% complete</p>
+            <p>{progress.percent?.toPrecision(3) ?? 0}% complete</p>
           </>
         )}
       </div>

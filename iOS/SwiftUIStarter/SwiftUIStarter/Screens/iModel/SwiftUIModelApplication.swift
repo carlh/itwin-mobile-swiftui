@@ -62,8 +62,6 @@ class SwiftUIModelApplication: ModelApplication {
     override func getAuthClient() -> AuthorizationClient? {
         return SwiftUIModelAppAuthClient()
     }
-    
-    // TODO TOMOROW: Look at downloadIModel in HubScreen.tsx.  If authentication doesn't fuck me up too much I should be able to get the token from the native side, and pass over the iModel and context ids, and I should be able to just go from there.
 }
 
 class SwiftUIModelAppAuthClient: ITMAuthorizationClient {

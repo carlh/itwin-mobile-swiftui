@@ -137,7 +137,7 @@ export function ModelScreen(props: ModelScreenProps) {
     }
     return actions;
   };
-  const moreButton = <ActionSheetButton actions={moreActions} />;
+  const moreButton = <ActionSheetButton actions={moreActions} width="54px" height="54px" />;
   const panels: TabOrPanelDef[] = [
     {
       label: infoLabel,
@@ -233,15 +233,10 @@ export function ModelScreen(props: ModelScreenProps) {
         </div>
       )}
       <MobileUiContent>
-        <NavigationPanel
-          left={
-            <>
-              <VisibleBackButton onClick={onBack} />
-            </>
-          }
-          right={<>{moreButton}</>}
-        />
-        <ToolAssistance />
+        <div className="msLeftSideToolContainer">
+          <ToolAssistance />
+          {moreButton}
+        </div>
         {tabsAndPanelsAPI.renderTabBarAndPanels()}
       </MobileUiContent>
     </>
