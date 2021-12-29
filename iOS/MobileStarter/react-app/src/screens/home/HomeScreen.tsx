@@ -9,8 +9,9 @@ import './HomeScreen.scss';
 export enum ActiveScreen {
   Loading,
   Home,
-  Snapshots,
-  Hub,
+  // Snapshots,
+  // Hub,
+  iModelConnectionLoader,
   Model,
 }
 
@@ -32,8 +33,8 @@ export function HomeScreen(props: HomeScreenProps) {
         <div className="title">{homeLabel}</div>
         <div className="list">
           <div className="list-items">
-            <Button title={snapshotIModelsLabel} onClick={() => onSelect(ActiveScreen.Snapshots)} />
-            <Button title={hubIModelsLabel} onClick={() => onSelect(ActiveScreen.Hub)} />
+            {/* <Button title={snapshotIModelsLabel} onClick={() => onSelect(ActiveScreen.Snapshots)} />
+            <Button title={hubIModelsLabel} onClick={() => onSelect(ActiveScreen.Hub)} /> */}
           </div>
         </div>
       </div>

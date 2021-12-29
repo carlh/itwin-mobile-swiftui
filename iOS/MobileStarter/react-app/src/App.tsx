@@ -28,6 +28,7 @@ import {
 } from './Exports';
 import { getSupportedRpcs } from './common/rpcs';
 import './App.scss';
+import IModelConnectionLoader from './screens/connection/IModelConnectionLoader';
 
 /// Interface to allow switching from one screen to another.
 interface ActiveInfo {
@@ -110,7 +111,7 @@ function App() {
         // messages from the native code to the TypeScript code.
         Messenger.sendMessage('didFinishLaunching');
         // Switch from the Loading screen to the Home screen.
-        pushActiveInfo(ActiveScreen.Home);
+        pushActiveInfo(ActiveScreen.iModelConnectionLoader);
         console.log('...Done Initializing.');
       } catch (ex) {
         console.log('Exception during initialization: ' + ex);
@@ -229,12 +230,10 @@ function App() {
   }, [iModel, openUrlPath, handleOpen]);
 
   switch (activeScreen) {
-    case ActiveScreen.Home:
-      return <HomeScreen onSelect={handleHomeSelect} />;
-    case ActiveScreen.Snapshots:
-      return <SnapshotsScreen onOpen={handleOpen} onBack={handleBack} />;
-    case ActiveScreen.Hub:
-      return <HubScreen onOpen={handleOpen} onBack={handleBack} />;
+    // case ActiveScreen.Home:
+    //   return <HomeScreen onSelect={handleHomeSelect} />;
+    case ActiveScreen.iModelConnectionLoader:
+      return <IModelConnectionLoader />;
     case ActiveScreen.Model:
       return <ModelScreen filename={modelFilename} iModel={iModel!} onBack={handleBack} />;
     default:
