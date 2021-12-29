@@ -17,16 +17,47 @@ struct ProjectDetailView: View {
     }
     
     var body: some View {
-        List(vm.imodelList, id: \.self) { imodel in
-            NavigationLink {
-                iModelView(iModel: imodel)
-            } label: {
-                GroupBox(imodel.displayName ?? "No Name") {
-                    VStack {
-                        Text("\(imodel.description ?? "No description")")
-                            .font(.body)
-                            .lineLimit(3)
-                            .minimumScaleFactor(0.75)
+        List {
+            Section("Geolocated iModels") {
+                ForEach(vm.iModelsWithExtents) { imodel in
+                    NavigationLink {
+                        iModelView(iModel: imodel)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("\(imodel.displayName ?? "No Name")")
+                                .font(.system(.title, design: .rounded))
+                                .bold()
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                            
+                            Text("\(imodel.description ?? "No description")")
+                                .font(.body)
+                                .foregroundColor(Color(uiColor: .secondaryLabel))
+                                .lineLimit(3)
+                                .minimumScaleFactor(0.75)
+                        }
+                    }
+                }
+            }
+            Section("Non-Geolocated iModels") {
+                ForEach(vm.iModelsWithoutExtents) { imodel in
+                    NavigationLink {
+                        iModelView(iModel: imodel)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("\(imodel.displayName ?? "No Name")")
+                                .font(.system(.title, design: .rounded))
+                                .bold()
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                            
+                            
+                            Text("\(imodel.description ?? "No description")")
+                                .font(.system(.body, design: .rounded))
+                                .foregroundColor(Color(uiColor: .secondaryLabel))
+                                .lineLimit(3)
+                                .minimumScaleFactor(0.75)
+                        }
                     }
                 }
             }

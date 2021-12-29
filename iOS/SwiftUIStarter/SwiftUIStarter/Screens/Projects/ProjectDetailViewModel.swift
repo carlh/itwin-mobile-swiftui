@@ -11,7 +11,10 @@ extension ProjectDetailView {
     
     @MainActor class ViewModel: ObservableObject {
         let project: Project
-        @Published var imodelList: [iModel] = []
+        private var imodelList: [iModel] = []
+        
+        @Published var iModelsWithExtents: [iModel] = []
+        @Published var iModelsWithoutExtents: [iModel] = []
         
         init(with project: Project) {
             self.project = project
@@ -23,10 +26,24 @@ extension ProjectDetailView {
                 return
             }
             if let imodels: iModels = await ITwinRequests.fetchObjects(url: iModelsHref) {
-                imodelList = imodels.iModels
+                imodelList = imodels.iModels.sorted(by: { first, second in
+                    if first.extent != nil { return true }
+                    if second.extent != nil { return false }
+                    return true
+                })
+                
+                var tmpImWithExtents: [iModel] = []
+                var tmpImWithoutExtents: [iModel] = []
+                imodelList.forEach { imodel in
+                    if imodel.extent == nil {
+                        tmpImWithoutExtents.append(imodel)
+                    } else {
+                        tmpImWithExtents.append(imodel)
+                    }
+                }
+                iModelsWithoutExtents = tmpImWithoutExtents
+                iModelsWithExtents = tmpImWithExtents
             }
         }
-        
     }
-
 }

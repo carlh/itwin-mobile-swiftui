@@ -15,15 +15,28 @@ struct ProjectsList: View {
     var body: some View {
         List {
             Section {
-                ForEach(searchResults, id: \.id) { project in
-                    GroupBox(project.geographicLocation ?? "") {
-                        LazyVStack(alignment: .leading) {
-                            NavigationLink {
-                                ProjectDetailView(project: project)
-                            } label: {
-                                Text(project.displayName ?? "No Name")
-                                    .font(.title)
-                                    .bold()
+                ForEach(searchResults) { project in
+                    NavigationLink {
+                        ProjectDetailView(project: project)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text(project.displayName ?? "No Name")
+                                .font(.system(.title, design: .rounded))
+                                .bold()
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
+                            HStack {
+                                Text(project.projectNumber ?? "No project number")
+                                    .font(.system(.body, design: .rounded))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.75)
+                                    .foregroundColor(Color(uiColor: .secondaryLabel))
+                                Spacer()
+                                Text(project.geographicLocation ?? "No Geolocation")
+                                    .font(.system(.body, design: .rounded))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.75)
+                                    .foregroundColor(Color(uiColor: .secondaryLabel))
                             }
                         }
                     }
@@ -45,10 +58,7 @@ struct ProjectsList: View {
                     }
                     .pickerStyle(.segmented)
                 }
-
             }
-
-            
         }
         .searchable(text: $searchString, placement: SearchFieldPlacement.navigationBarDrawer, prompt: Text("Search"))
         .task {
