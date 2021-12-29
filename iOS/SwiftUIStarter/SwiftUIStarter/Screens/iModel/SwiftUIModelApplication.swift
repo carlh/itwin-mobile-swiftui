@@ -10,22 +10,19 @@ import ITwinMobile
 import IModelJsNative
 import PromiseKit
 
-enum ITMMessages {
-    static let accessToken = "accessToken"
-    static let selectedIModel = "selectedIModel"
-}
-
-struct iTwinData: Codable {
-    let iModelId: String
-    let contextId: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case iModelId
-        case contextId
-    }
-}
-
 class SwiftUIModelApplication: ModelApplication {
+    
+    private struct iTwinData: Codable {
+        let iModelId: String
+        let contextId: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case iModelId
+            case contextId
+        }
+    }
+    
+    // The view model is acting as a data source for the ModelApplication.  I should probably define it that way instead of taking a hard dependency on the ViewModel.
     weak var vm: iModelView.ViewModel? = nil
     
     required init() {
@@ -45,12 +42,9 @@ class SwiftUIModelApplication: ModelApplication {
                 return Promise.value(nil);
             }
             
-            let iModelId = iModel.id
-            
-            let data: iTwinData = iTwinData(iModelId: iModelId, contextId: contextId)
+            let data: iTwinData = iTwinData(iModelId: iModel.id, contextId: contextId)
             do {
                 let encoded = try JSONEncoder().encode(data)
-                print("Encoded the data: \(encoded.base64EncodedString())")
                 return Promise.value(encoded.base64EncodedString())
             } catch {
                 print("Failed to encode the data: \(error.localizedDescription)")
@@ -61,38 +55,5 @@ class SwiftUIModelApplication: ModelApplication {
     
     override func getAuthClient() -> AuthorizationClient? {
         return SwiftUIModelAppAuthClient()
-    }
-}
-
-class SwiftUIModelAppAuthClient: ITMAuthorizationClient {
-    enum InteropError: Error, CustomStringConvertible {
-        case tokenError
-        
-        var description: String {
-            switch self {
-                case .tokenError:
-                    return "There was an error getting the refreshed access token from the AppAuthClient."
-            }
-        }
-    }
-    
-     init() {
-        super.init(viewController: nil)
-        print("Using custom auth client")
-    }
-    
-    @MainActor
-    func setAuthState() {
-        authState = AppAuthHelper.authState
-    }
-    
-    override func initialize(_ authSettings: AuthSettings, onComplete completion: @escaping AuthorizationClientCallback) {
-        super.initialize(authSettings) {
-            error in
-            Task {
-                await self.setAuthState()
-                completion(error)
-            }
-        }
     }
 }

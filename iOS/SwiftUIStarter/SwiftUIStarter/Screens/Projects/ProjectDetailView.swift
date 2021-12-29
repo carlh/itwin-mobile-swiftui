@@ -30,8 +30,6 @@ struct ProjectDetailView: View {
                     }
                 }
             }
-
-            
         }
         .task {
             await vm.fetchIModels()

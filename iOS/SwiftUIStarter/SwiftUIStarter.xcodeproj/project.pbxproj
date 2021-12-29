@@ -26,7 +26,6 @@
 		C3B2F729277B9F2C0023FAC7 /* ProjectsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F728277B9F2C0023FAC7 /* ProjectsListViewModel.swift */; };
 		C3B2F72C277BAE170023FAC7 /* iModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F72B277BAE170023FAC7 /* iModelView.swift */; };
 		C3B2F72E277BAFD10023FAC7 /* iModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F72D277BAFD10023FAC7 /* iModelViewModel.swift */; };
-		C3B2F730277BB0BE0023FAC7 /* ITMApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F72F277BB0BE0023FAC7 /* ITMApplication+Ext.swift */; };
 		C3B2F732277BB26A0023FAC7 /* SwiftUIModelApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F731277BB26A0023FAC7 /* SwiftUIModelApplication.swift */; };
 		C3BEC250276D16B00023E88A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BEC24F276D16B00023E88A /* Home.swift */; };
 		C3CD1CCB277A217100ACFE0F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CCA277A217100ACFE0F /* HomeViewModel.swift */; };
@@ -35,6 +34,8 @@
 		C3CD1CD4277A2EED00ACFE0F /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CD3277A2EED00ACFE0F /* UIApplication+Ext.swift */; };
 		C3CD1CD6277A40EE00ACFE0F /* iTwinRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CD5277A40EE00ACFE0F /* iTwinRequests.swift */; };
 		C3CD1CD9277A423200ACFE0F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CD8277A423200ACFE0F /* Project.swift */; };
+		C3E296CF277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296CE277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift */; };
+		C3E296D1277CFBD60010F5ED /* iTwinMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +61,6 @@
 		C3B2F728277B9F2C0023FAC7 /* ProjectsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListViewModel.swift; sourceTree = "<group>"; };
 		C3B2F72B277BAE170023FAC7 /* iModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelView.swift; sourceTree = "<group>"; };
 		C3B2F72D277BAFD10023FAC7 /* iModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelViewModel.swift; sourceTree = "<group>"; };
-		C3B2F72F277BB0BE0023FAC7 /* ITMApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ITMApplication+Ext.swift"; sourceTree = "<group>"; };
 		C3B2F731277BB26A0023FAC7 /* SwiftUIModelApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIModelApplication.swift; sourceTree = "<group>"; };
 		C3BEC24F276D16B00023E88A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		C3CD1CCA277A217100ACFE0F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		C3CD1CD3277A2EED00ACFE0F /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 		C3CD1CD5277A40EE00ACFE0F /* iTwinRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTwinRequests.swift; sourceTree = "<group>"; };
 		C3CD1CD8277A423200ACFE0F /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		C3E296CE277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUiModelAppAuthClient.swift; sourceTree = "<group>"; };
+		C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTwinMessages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,8 @@
 				C3B2F72B277BAE170023FAC7 /* iModelView.swift */,
 				C3B2F72D277BAFD10023FAC7 /* iModelViewModel.swift */,
 				C3B2F731277BB26A0023FAC7 /* SwiftUIModelApplication.swift */,
+				C3E296CE277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift */,
+				C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */,
 			);
 			path = iModel;
 			sourceTree = "<group>";
@@ -211,7 +215,6 @@
 				C3B2F714277B56930023FAC7 /* OIDAuthorizationService+Ext.swift */,
 				C3B2F716277B56BF0023FAC7 /* OIDAuthState+Ext.swift */,
 				C3B2F726277B9CE00023FAC7 /* URL+Ext.swift */,
-				C3B2F72F277BB0BE0023FAC7 /* ITMApplication+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,7 +340,9 @@
 				C3B2F723277B6AFC0023FAC7 /* ProjectDetailViewModel.swift in Sources */,
 				C3B2F719277B57410023FAC7 /* URLSession+Ext.swift in Sources */,
 				1F2D7B6A2742D97700AAB11E /* PrintLogger.swift in Sources */,
+				C3E296CF277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift in Sources */,
 				C3BEC250276D16B00023E88A /* Home.swift in Sources */,
+				C3E296D1277CFBD60010F5ED /* iTwinMessages.swift in Sources */,
 				C3B2F717277B56BF0023FAC7 /* OIDAuthState+Ext.swift in Sources */,
 				C3CD1CCE277A259A00ACFE0F /* AppDelegate.swift in Sources */,
 				5FD7518326DD9D4C00DC3060 /* DocumentPicker.swift in Sources */,
@@ -345,7 +350,6 @@
 				C3B2F72E277BAFD10023FAC7 /* iModelViewModel.swift in Sources */,
 				C3CD1CD9277A423200ACFE0F /* Project.swift in Sources */,
 				C3CD1CD4277A2EED00ACFE0F /* UIApplication+Ext.swift in Sources */,
-				C3B2F730277BB0BE0023FAC7 /* ITMApplication+Ext.swift in Sources */,
 				5FDD749626CDA9520007FBC6 /* SwiftUIStarterApp.swift in Sources */,
 				C3CD1CD6277A40EE00ACFE0F /* iTwinRequests.swift in Sources */,
 			);

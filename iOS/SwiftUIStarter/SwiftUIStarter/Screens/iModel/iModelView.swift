@@ -19,6 +19,8 @@ struct iModelView: View {
     var body: some View {
         ITMSwiftUIContentView(application: vm.app)
             .edgesIgnoringSafeArea(.all)
+            .navigationTitle(vm.iModel.displayName ?? "")
+            .navigationBarTitleDisplayMode(.inline)
     }
     
 }

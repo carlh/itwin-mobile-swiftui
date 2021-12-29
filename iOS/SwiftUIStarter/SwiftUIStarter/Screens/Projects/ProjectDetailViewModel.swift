@@ -22,9 +22,8 @@ extension ProjectDetailView {
                 print("No link to iModels in this project")
                 return
             }
-            if let imodels: iModels = await ITwinRequests.fetchObjects(url: iModelsHref){
+            if let imodels: iModels = await ITwinRequests.fetchObjects(url: iModelsHref) {
                 imodelList = imodels.iModels
-                print("Got iModels: \(imodelList)")
             }
         }
         
