@@ -16,19 +16,9 @@ import { Presentation } from '@bentley/presentation-frontend';
 import { Messenger, presentAlert } from '@itwin/mobile-sdk-core';
 import { MobileUi } from '@itwin/mobile-ui-react';
 import { FeatureTracking as MeasureToolsFeatureTracking, MeasureTools } from '@bentley/measure-tools-react';
-import {
-  ActiveScreen,
-  SnapshotsScreen,
-  HomeScreen,
-  HubScreen,
-  LoadingScreen,
-  ModelScreen,
-  i18n,
-  ToolAssistance,
-} from './Exports';
+import { ActiveScreen, LoadingScreen, ModelScreen, i18n, ToolAssistance, IModelConnectionLoader } from './Exports';
 import { getSupportedRpcs } from './common/rpcs';
 import './App.scss';
-import IModelConnectionLoader from './screens/connection/IModelConnectionLoader';
 
 /// Interface to allow switching from one screen to another.
 interface ActiveInfo {
@@ -174,15 +164,6 @@ function App() {
     // Note that the activeScreen stored at the top of the stack is the previous active screen.
     setActiveScreen(lastScreen.activeScreen);
   }, [activeStack]);
-
-  // Callback to select another screen from the Home screen. Note that none of those screens needs a
-  // cleanup callback.
-  const handleHomeSelect = React.useCallback(
-    (screen: ActiveScreen) => {
-      pushActiveInfo(screen);
-    },
-    [pushActiveInfo],
-  );
 
   React.useEffect(() => {
     if (initialized) {

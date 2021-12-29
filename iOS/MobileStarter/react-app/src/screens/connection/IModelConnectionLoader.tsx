@@ -1,10 +1,9 @@
-import { IModel, LocalBriefcaseProps, SyncMode } from '@bentley/imodeljs-common';
+import React, { useCallback, useEffect, useState } from 'react';
+import { LocalBriefcaseProps, SyncMode } from '@bentley/imodeljs-common';
 import { BriefcaseConnection, IModelConnection, NativeApp } from '@bentley/imodeljs-frontend';
 import { ProgressInfo } from '@bentley/itwin-client';
 import { Messenger } from '@itwin/mobile-sdk-core';
-import React, { useCallback, useEffect, useState } from 'react';
-import { Screen } from '../../Screen';
-import { ModelScreen } from '../model/ModelScreen';
+import { Screen, ModelScreen } from '../../Exports';
 
 import './iModelConnectionLoader.scss';
 
@@ -114,4 +113,4 @@ const IModelConnectionLoader = () => {
   );
 };
 
-export default IModelConnectionLoader;
+export { IModelConnectionLoader };

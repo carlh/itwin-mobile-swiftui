@@ -1,13 +1,13 @@
 /*---------------------------------------------------------------------------------------------
-* Copyright (c) Bentley Systems, Incorporated. All rights reserved.
-* See LICENSE.md in the project root for license terms and full copyright notice.
-*--------------------------------------------------------------------------------------------*/
-import React from "react";
-import { Messenger } from "@itwin/mobile-sdk-core";
-import { NavigationButton, VisibleBackButton } from "@itwin/mobile-ui-react";
-import { Button, i18n, Screen } from "./Exports";
-import { IModelConnection, SnapshotConnection } from "@bentley/imodeljs-frontend";
-import "./SnapshotsScreen.scss";
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+import React from 'react';
+import { Messenger } from '@itwin/mobile-sdk-core';
+import { NavigationButton, VisibleBackButton } from '@itwin/mobile-ui-react';
+import { Button, i18n, Screen } from '../../Exports';
+import { IModelConnection, SnapshotConnection } from '@bentley/imodeljs-frontend';
+import './SnapshotsScreen.scss';
 
 /// Properties for the [[SnapshotsScreen]] React component.
 export interface SnapshotsScreenProps {
@@ -21,15 +21,15 @@ export interface SnapshotsScreenProps {
 export function SnapshotsScreen(props: SnapshotsScreenProps) {
   const { onOpen, onBack } = props;
   const [snapshots, setSnapshots] = React.useState<string[]>([]);
-  const chooseFileLabel = React.useMemo(() => i18n("SnapshotsScreen", "ChooseFile"), []);
-  const selectIModelLabel = React.useMemo(() => i18n("Shared", "SelectIModel"), []);
+  const chooseFileLabel = React.useMemo(() => i18n('SnapshotsScreen', 'ChooseFile'), []);
+  const selectIModelLabel = React.useMemo(() => i18n('Shared', 'SelectIModel'), []);
 
   // This function sends a message to the native code requesting an array containing the paths to all
   // the *.bim files in the app's Documents folder. Note that fetching this list should be nearly
   // instantaneous, so there is no loading spinner.
   const updateBimDocuments = React.useCallback(async () => {
-    const bimDocuments: string[] = await Messenger.query("getBimDocuments");
-    setSnapshots(bimDocuments.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" })));
+    const bimDocuments: string[] = await Messenger.query('getBimDocuments');
+    setSnapshots(bimDocuments.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })));
   }, []);
 
   // React effect run during component initialization.
@@ -40,15 +40,18 @@ export function SnapshotsScreen(props: SnapshotsScreenProps) {
   // Convert the array of paths into an array of [[Button]] components, where each button loads the
   // corresponding snapshot iModel.
   const bimButtons = snapshots.map((document: string, index: number) => {
-    const lastSlash = document.lastIndexOf("/");
+    const lastSlash = document.lastIndexOf('/');
     const documentName = lastSlash === -1 ? document : document.substring(lastSlash + 1);
-    return <Button
-      key={index}
-      onClick={async () => {
-        // Open the given snapshot iModel, and then pass it to the onOpen props callback.
-        onOpen(document, SnapshotConnection.openFile(document));
-      }}
-      title={documentName} />
+    return (
+      <Button
+        key={index}
+        onClick={async () => {
+          // Open the given snapshot iModel, and then pass it to the onOpen props callback.
+          onOpen(document, SnapshotConnection.openFile(document));
+        }}
+        title={documentName}
+      />
+    );
   });
 
   // Add a button to the beginning of the list to use the OS's file picker to choose a *.bim file.
@@ -56,14 +59,14 @@ export function SnapshotsScreen(props: SnapshotsScreenProps) {
     <Button
       key={bimButtons.length}
       onClick={async () => {
-        const document: string = await Messenger.query("chooseDocument");
+        const document: string = await Messenger.query('chooseDocument');
         if (document.length) {
           // Open the given snapshot iModel, and then pass it to the onOpen props callback.
           onOpen(document, SnapshotConnection.openFile(document));
         }
       }}
       title={chooseFileLabel}
-    />
+    />,
   );
 
   return (

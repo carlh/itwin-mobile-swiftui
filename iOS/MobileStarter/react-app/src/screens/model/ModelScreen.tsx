@@ -14,12 +14,10 @@ import {
   IconImage,
   MobileUi,
   MobileUiContent,
-  NavigationPanel,
   TabOrPanelDef,
   useBeEvent,
   useIsMountedRef,
   useTabsAndStandAlonePanels,
-  VisibleBackButton,
 } from '@itwin/mobile-ui-react';
 import {
   AboutBottomPanel,
@@ -57,7 +55,7 @@ export function updateBackgroundColor(viewState: ViewState) {
 /// React component showing the iModel and containing UI for interacting with it.
 export function ModelScreen(props: ModelScreenProps) {
   const tabsAndPanelsAPI = useTabsAndStandAlonePanels();
-  const { filename, iModel, onBack } = props;
+  const { filename, iModel } = props;
   const [viewState, setViewState] = React.useState<ViewState>();
   const locationLabel = React.useMemo(() => i18n('ModelScreen', 'Location'), []);
   const errorLabel = React.useMemo(() => i18n('Shared', 'Error'), []);
