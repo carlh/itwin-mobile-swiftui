@@ -4,17 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 // By exporting all the app code from this file, and importing through this file, we can make
 // sure to avoid any import loops.
-export * from './ToolAssistance';
+export * from './components/controls/ToolAssistance';
 export * from './App';
-export * from './Button';
-export * from './Screen';
-export * from './LoadingScreen';
-export * from './SnapshotsScreen';
-export * from './screens/model/ModelScreen';
-export * from './InfoBottomPanel';
+export * from './components/controls/button/Button';
+export * from './components/statusbar/info/InfoBottomPanel';
 export * from './components/statusbar/about/AboutBottomPanel';
 export * from './components/statusbar/views/ViewsBottomPanel';
-export * from './screens/home/HomeScreen';
-export * from './screens/hub/HubScreen';
-export * from './ElementPropertiesPanel';
+export * from './components/statusbar/properties/ElementPropertiesPanel';
 export * from './components/statusbar/tools/ToolsBottomPanel';
+export * from './screens/Screen';
+export * from './screens/ActiveScreen';
+export * from './screens/loading/LoadingScreen';
+export * from './screens/snapshot/SnapshotsScreen';
+export * from './screens/model/ModelScreen';
+export * from './screens/connection/IModelConnectionLoader';

@@ -17,7 +17,7 @@ import SafariServices
 @MainActor struct AppAuthHelper {
     private static let issuer = URL(string: "https://ims.bentley.com")
     
-    private static var authState: OIDAuthState?
+    static var authState: OIDAuthState?
     static var currentAuthorizationFlow: OIDExternalUserAgentSession?
     
     static func authenticate() async throws {

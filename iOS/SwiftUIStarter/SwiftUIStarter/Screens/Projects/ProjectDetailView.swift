@@ -17,15 +17,21 @@ struct ProjectDetailView: View {
     }
     
     var body: some View {
-        List($vm.imodelList, id: \.self) { imodel in
-            GroupBox(imodel.wrappedValue.displayName ?? "No Name") {
-                VStack {
-                    Text("\(imodel.wrappedValue.description ?? "No description")")
-                        .font(.body)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.75)
+        List(vm.imodelList, id: \.self) { imodel in
+            NavigationLink {
+                iModelView(iModel: imodel)
+            } label: {
+                GroupBox(imodel.displayName ?? "No Name") {
+                    VStack {
+                        Text("\(imodel.description ?? "No description")")
+                            .font(.body)
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.75)
+                    }
                 }
             }
+
+            
         }
         .task {
             await vm.fetchIModels()

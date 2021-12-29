@@ -16,16 +16,7 @@ import { Presentation } from '@bentley/presentation-frontend';
 import { Messenger, presentAlert } from '@itwin/mobile-sdk-core';
 import { MobileUi } from '@itwin/mobile-ui-react';
 import { FeatureTracking as MeasureToolsFeatureTracking, MeasureTools } from '@bentley/measure-tools-react';
-import {
-  ActiveScreen,
-  SnapshotsScreen,
-  HomeScreen,
-  HubScreen,
-  LoadingScreen,
-  ModelScreen,
-  i18n,
-  ToolAssistance,
-} from './Exports';
+import { ActiveScreen, LoadingScreen, ModelScreen, i18n, ToolAssistance, IModelConnectionLoader } from './Exports';
 import { getSupportedRpcs } from './common/rpcs';
 import './App.scss';
 
@@ -110,7 +101,7 @@ function App() {
         // messages from the native code to the TypeScript code.
         Messenger.sendMessage('didFinishLaunching');
         // Switch from the Loading screen to the Home screen.
-        pushActiveInfo(ActiveScreen.Home);
+        pushActiveInfo(ActiveScreen.iModelConnectionLoader);
         console.log('...Done Initializing.');
       } catch (ex) {
         console.log('Exception during initialization: ' + ex);
@@ -174,15 +165,6 @@ function App() {
     setActiveScreen(lastScreen.activeScreen);
   }, [activeStack]);
 
-  // Callback to select another screen from the Home screen. Note that none of those screens needs a
-  // cleanup callback.
-  const handleHomeSelect = React.useCallback(
-    (screen: ActiveScreen) => {
-      pushActiveInfo(screen);
-    },
-    [pushActiveInfo],
-  );
-
   React.useEffect(() => {
     if (initialized) {
       //CHIN: It seems like I can use the `openModel` message directly from native code to bypass the rest of the React screens.
@@ -229,12 +211,10 @@ function App() {
   }, [iModel, openUrlPath, handleOpen]);
 
   switch (activeScreen) {
-    case ActiveScreen.Home:
-      return <HomeScreen onSelect={handleHomeSelect} />;
-    case ActiveScreen.Snapshots:
-      return <SnapshotsScreen onOpen={handleOpen} onBack={handleBack} />;
-    case ActiveScreen.Hub:
-      return <HubScreen onOpen={handleOpen} onBack={handleBack} />;
+    // case ActiveScreen.Home:
+    //   return <HomeScreen onSelect={handleHomeSelect} />;
+    case ActiveScreen.iModelConnectionLoader:
+      return <IModelConnectionLoader />;
     case ActiveScreen.Model:
       return <ModelScreen filename={modelFilename} iModel={iModel!} onBack={handleBack} />;
     default:

@@ -24,6 +24,10 @@
 		C3B2F725277B6DB60023FAC7 /* iModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F724277B6DB60023FAC7 /* iModel.swift */; };
 		C3B2F727277B9CE00023FAC7 /* URL+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F726277B9CE00023FAC7 /* URL+Ext.swift */; };
 		C3B2F729277B9F2C0023FAC7 /* ProjectsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F728277B9F2C0023FAC7 /* ProjectsListViewModel.swift */; };
+		C3B2F72C277BAE170023FAC7 /* iModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F72B277BAE170023FAC7 /* iModelView.swift */; };
+		C3B2F72E277BAFD10023FAC7 /* iModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F72D277BAFD10023FAC7 /* iModelViewModel.swift */; };
+		C3B2F730277BB0BE0023FAC7 /* ITMApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F72F277BB0BE0023FAC7 /* ITMApplication+Ext.swift */; };
+		C3B2F732277BB26A0023FAC7 /* SwiftUIModelApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B2F731277BB26A0023FAC7 /* SwiftUIModelApplication.swift */; };
 		C3BEC250276D16B00023E88A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BEC24F276D16B00023E88A /* Home.swift */; };
 		C3CD1CCB277A217100ACFE0F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CCA277A217100ACFE0F /* HomeViewModel.swift */; };
 		C3CD1CCE277A259A00ACFE0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CCD277A259A00ACFE0F /* AppDelegate.swift */; };
@@ -54,6 +58,10 @@
 		C3B2F724277B6DB60023FAC7 /* iModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModel.swift; sourceTree = "<group>"; };
 		C3B2F726277B9CE00023FAC7 /* URL+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Ext.swift"; sourceTree = "<group>"; };
 		C3B2F728277B9F2C0023FAC7 /* ProjectsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListViewModel.swift; sourceTree = "<group>"; };
+		C3B2F72B277BAE170023FAC7 /* iModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelView.swift; sourceTree = "<group>"; };
+		C3B2F72D277BAFD10023FAC7 /* iModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelViewModel.swift; sourceTree = "<group>"; };
+		C3B2F72F277BB0BE0023FAC7 /* ITMApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ITMApplication+Ext.swift"; sourceTree = "<group>"; };
+		C3B2F731277BB26A0023FAC7 /* SwiftUIModelApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIModelApplication.swift; sourceTree = "<group>"; };
 		C3BEC24F276D16B00023E88A /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		C3CD1CCA277A217100ACFE0F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C3CD1CCD277A259A00ACFE0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,9 +156,20 @@
 			path = Projects;
 			sourceTree = "<group>";
 		};
+		C3B2F72A277BAE010023FAC7 /* iModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3B2F72B277BAE170023FAC7 /* iModelView.swift */,
+				C3B2F72D277BAFD10023FAC7 /* iModelViewModel.swift */,
+				C3B2F731277BB26A0023FAC7 /* SwiftUIModelApplication.swift */,
+			);
+			path = iModel;
+			sourceTree = "<group>";
+		};
 		C3BEC24E276D16720023E88A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C3B2F72A277BAE010023FAC7 /* iModel */,
 				C3B2F71D277B58130023FAC7 /* Projects */,
 				C3CD1CC8277A215700ACFE0F /* Home */,
 			);
@@ -192,6 +211,7 @@
 				C3B2F714277B56930023FAC7 /* OIDAuthorizationService+Ext.swift */,
 				C3B2F716277B56BF0023FAC7 /* OIDAuthState+Ext.swift */,
 				C3B2F726277B9CE00023FAC7 /* URL+Ext.swift */,
+				C3B2F72F277BB0BE0023FAC7 /* ITMApplication+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,7 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B2F72C277BAE170023FAC7 /* iModelView.swift in Sources */,
 				5FD7518426DD9D4C00DC3060 /* ModelApplication.swift in Sources */,
+				C3B2F732277BB26A0023FAC7 /* SwiftUIModelApplication.swift in Sources */,
 				C3B2F725277B6DB60023FAC7 /* iModel.swift in Sources */,
 				C3B2F71C277B578E0023FAC7 /* CustomErrors.swift in Sources */,
 				C3B2F721277B65A70023FAC7 /* ProjectDetailView.swift in Sources */,
@@ -320,8 +342,10 @@
 				C3CD1CCE277A259A00ACFE0F /* AppDelegate.swift in Sources */,
 				5FD7518326DD9D4C00DC3060 /* DocumentPicker.swift in Sources */,
 				C3B2F729277B9F2C0023FAC7 /* ProjectsListViewModel.swift in Sources */,
+				C3B2F72E277BAFD10023FAC7 /* iModelViewModel.swift in Sources */,
 				C3CD1CD9277A423200ACFE0F /* Project.swift in Sources */,
 				C3CD1CD4277A2EED00ACFE0F /* UIApplication+Ext.swift in Sources */,
+				C3B2F730277BB0BE0023FAC7 /* ITMApplication+Ext.swift in Sources */,
 				5FDD749626CDA9520007FBC6 /* SwiftUIStarterApp.swift in Sources */,
 				C3CD1CD6277A40EE00ACFE0F /* iTwinRequests.swift in Sources */,
 			);
