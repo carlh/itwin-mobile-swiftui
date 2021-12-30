@@ -9,21 +9,33 @@ import SwiftUI
 import ITwinMobile
 
 struct iModelView: View {
+    @EnvironmentObject private var app: SwiftUIModelApplication
     @StateObject private var vm: ViewModel
-    
     
     init(iModel: iModel) {
         self._vm = StateObject(wrappedValue: ViewModel(with: iModel))
     }
     
     var body: some View {
-        ITMSwiftUIContentView(application: vm.app)
-            .edgesIgnoringSafeArea(.all)
-            .navigationTitle(vm.iModel.displayName ?? "")
-            .navigationBarTitleDisplayMode(.inline)
-            .onDisappear {
-                vm.closeIModel()
+        ZStack {
+            if let app = vm.app {
+                ITMSwiftUIContentView(application: app)
+                    .edgesIgnoringSafeArea(.all)
+                    .navigationTitle(vm.iModel.displayName ?? "")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .onDisappear {
+                        vm.closeIModel()
+                    }
+            } else {
+                VStack(alignment: .center) {
+                    ProgressView("Loading...")
+                        .progressViewStyle(.linear)
+                }
             }
+        }
+        .onAppear {
+            vm.app = app
+        }
     }
     
 }

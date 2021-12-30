@@ -10,17 +10,20 @@ import ITwinMobile
 
 extension iModelView {
     @MainActor class ViewModel: ObservableObject {
-        @Published var app: SwiftUIModelApplication
-        let iModel: iModel 
+        @Published var app: SwiftUIModelApplication? = nil {
+            didSet {
+                app?.vm = self
+            }
+        }
+        
+        let iModel: iModel
         
         init(with iModel: iModel) {
             self.iModel = iModel
-            app = SwiftUIModelApplication()
-            app.vm = self
         }
         
         func closeIModel() {
-            app.closeIModel()
+            app?.closeIModel()
         }
     }
 }

@@ -13,16 +13,12 @@ import ITwinMobile
 struct SwiftUIStarterApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-//    private var application = ModelApplication()
+    private var application = SwiftUIModelApplication()
     
     var body: some Scene {
         return WindowGroup {
-//            ITMSwiftUIContentView(application: application)
-//                .edgesIgnoringSafeArea(.all)
-//                .onOpenURL() { url in
-//                    DocumentHelper.openInboxUrl(url)
-//                }
             Home()
+                .environmentObject(application)
         }
     }
 }

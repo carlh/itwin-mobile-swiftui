@@ -10,7 +10,7 @@ import ITwinMobile
 import IModelJsNative
 import PromiseKit
 
-class SwiftUIModelApplication: ModelApplication {
+class SwiftUIModelApplication: ModelApplication, ObservableObject {
     
     private struct iTwinData: Codable {
         let iModelId: String
