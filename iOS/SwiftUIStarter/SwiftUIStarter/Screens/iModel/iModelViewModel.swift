@@ -18,5 +18,9 @@ extension iModelView {
             app = SwiftUIModelApplication()
             app.vm = self
         }
+        
+        func closeIModel() {
+            app.closeIModel()
+        }
     }
 }

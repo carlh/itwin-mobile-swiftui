@@ -10,4 +10,5 @@ import Foundation
 enum ITMMessages {
     static let accessToken = "accessToken"
     static let selectedIModel = "selectedIModel"
+    static let closeModel = "closeModel"
 }

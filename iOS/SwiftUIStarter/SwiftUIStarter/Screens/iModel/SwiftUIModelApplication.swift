@@ -53,6 +53,10 @@ class SwiftUIModelApplication: ModelApplication {
         }
     }
     
+    func closeIModel() {
+        itmMessenger.query(ITMMessages.closeModel)
+    }
+    
     override func getAuthClient() -> AuthorizationClient? {
         return SwiftUIModelAppAuthClient()
     }

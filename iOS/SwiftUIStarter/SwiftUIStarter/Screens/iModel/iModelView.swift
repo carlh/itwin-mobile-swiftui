@@ -21,6 +21,9 @@ struct iModelView: View {
             .edgesIgnoringSafeArea(.all)
             .navigationTitle(vm.iModel.displayName ?? "")
             .navigationBarTitleDisplayMode(.inline)
+            .onDisappear {
+                vm.closeIModel()
+            }
     }
     
 }

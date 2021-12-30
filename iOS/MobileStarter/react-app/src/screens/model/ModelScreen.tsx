@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ColorDef } from '@bentley/imodeljs-common';
 import { FitViewTool, IModelApp, IModelConnection, ViewState } from '@bentley/imodeljs-frontend';
 import { ViewportComponent } from '@bentley/ui-components';
 import { getCssVariable, IconSpec } from '@bentley/ui-core';
 import { viewWithUnifiedSelection } from '@bentley/presentation-components';
-import { AlertAction, presentAlert } from '@itwin/mobile-sdk-core';
+import { AlertAction, Messenger, presentAlert } from '@itwin/mobile-sdk-core';
 import {
   ActionSheetButton,
   IconImage,
@@ -200,6 +200,16 @@ export function ModelScreen(props: ModelScreenProps) {
       updateBackgroundColor(viewState);
     }
   }, MobileUi.onColorSchemeChanged);
+
+  useEffect(() => {
+    debugger;
+    Messenger.onQuery('closeModel').setHandler(async () => {
+      if (iModel.isOpen) {
+        iModel.close();
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Effect to load the default view state.
   React.useEffect(() => {
