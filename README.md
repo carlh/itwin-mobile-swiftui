@@ -1,17 +1,11 @@
-# iTwin mobile-sdk-samples
+# iTwin Mobile SwiftUI Sample
 
-Copyright © Bentley Systems, Incorporated. All rights reserved. See [LICENSE.md](./LICENSE.md) for license terms and full copyright notice.
+## Description
 
-## Warning
+This project is a fork of the itwin-mobile-sdk sample. The difference here is that, while the official Bentley samples make liberal use of React in order to maximize the amount of code reuse across the Android and iOS platforms, this code strips back the use of React to the bare minimum (basically only downloading and viewing iModels) while using the latest iOS development tools and approaches (SwiftUI and concurrency) and the public iTwin APIs for the rest of the app. I belive that this is the approach that most developers will take when integrating iTwin.js into thier apps (not SwiftUI specifically, just the native development aspect).
 
-This is pre-release software and provided as-is.
+## References
 
-## About this Repository
-
-This repository contains sample iOS apps that make use of the iTwin mobile-sdk.
-
-There are two sample apps, MobileStarter and SwiftUIStarter. The former is a UIKit app, and the later is a SwiftUI app. Both contain a full-screen WKWebView to host the iTwin content, and make use of the same TypeScript code running inside that WKWebView.
-
-Each sample app includes an Xcode project with a LocalSDK_ prefix. These Xcode projects are the same as the main ones, with the exception that they refer to a local filesystem copy of mobile-sdk, instead of referring to the mobile-sdk Swift Package on GitHub.
+iTwin.js and the iTwin Platform are SDKs and services developed and open sourced by Bentley Systems that enable Infrastructure Digital Twin applicaions. This is what I work on at my day job. See [the Bentley iTwin platform developer site](https://developer.bentley.com/) and [sdk site](https://itwinjs.org) for more info.
 
 See [iOS/README.md](./iOS/README.md) for instructions on building the samples.
