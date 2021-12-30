@@ -15,6 +15,13 @@ extension ProjectDetailView {
         
         @Published var iModelsWithExtents: [iModel] = []
         @Published var iModelsWithoutExtents: [iModel] = []
+        @Published var showMap = false
+        
+        var selectediModel: iModel? {
+            didSet {
+                showMap = selectediModel != nil
+            }
+        }
         
         init(with project: Project) {
             self.project = project

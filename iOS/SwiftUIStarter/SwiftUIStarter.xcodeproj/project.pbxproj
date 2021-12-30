@@ -36,6 +36,8 @@
 		C3CD1CD9277A423200ACFE0F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CD1CD8277A423200ACFE0F /* Project.swift */; };
 		C3E296CF277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296CE277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift */; };
 		C3E296D1277CFBD60010F5ED /* iTwinMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */; };
+		C3E296DA277E03ED0010F5ED /* iModelLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296D9277E03ED0010F5ED /* iModelLocationMapView.swift */; };
+		C3E296DC277E046F0010F5ED /* iModelLocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296DB277E046F0010F5ED /* iModelLocationMapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		C3CD1CD8277A423200ACFE0F /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		C3E296CE277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUiModelAppAuthClient.swift; sourceTree = "<group>"; };
 		C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTwinMessages.swift; sourceTree = "<group>"; };
+		C3E296D9277E03ED0010F5ED /* iModelLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelLocationMapView.swift; sourceTree = "<group>"; };
+		C3E296DB277E046F0010F5ED /* iModelLocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelLocationMapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 				C3B2F728277B9F2C0023FAC7 /* ProjectsListViewModel.swift */,
 				C3B2F720277B65A70023FAC7 /* ProjectDetailView.swift */,
 				C3B2F722277B6AFC0023FAC7 /* ProjectDetailViewModel.swift */,
+				C3E296D9277E03ED0010F5ED /* iModelLocationMapView.swift */,
+				C3E296DB277E046F0010F5ED /* iModelLocationMapViewModel.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 				C3B2F721277B65A70023FAC7 /* ProjectDetailView.swift in Sources */,
 				C3CD1CD1277A266B00ACFE0F /* AuthHelpers.swift in Sources */,
 				C3B2F71F277B59340023FAC7 /* ProjectsList.swift in Sources */,
+				C3E296DC277E046F0010F5ED /* iModelLocationMapViewModel.swift in Sources */,
 				C3B2F715277B56930023FAC7 /* OIDAuthorizationService+Ext.swift in Sources */,
 				C3B2F727277B9CE00023FAC7 /* URL+Ext.swift in Sources */,
 				C3CD1CCB277A217100ACFE0F /* HomeViewModel.swift in Sources */,
@@ -342,6 +349,7 @@
 				1F2D7B6A2742D97700AAB11E /* PrintLogger.swift in Sources */,
 				C3E296CF277CFB940010F5ED /* SwiftUiModelAppAuthClient.swift in Sources */,
 				C3BEC250276D16B00023E88A /* Home.swift in Sources */,
+				C3E296DA277E03ED0010F5ED /* iModelLocationMapView.swift in Sources */,
 				C3E296D1277CFBD60010F5ED /* iTwinMessages.swift in Sources */,
 				C3B2F717277B56BF0023FAC7 /* OIDAuthState+Ext.swift in Sources */,
 				C3CD1CCE277A259A00ACFE0F /* AppDelegate.swift in Sources */,
