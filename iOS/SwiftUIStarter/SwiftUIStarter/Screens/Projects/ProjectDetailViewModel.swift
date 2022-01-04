@@ -16,6 +16,7 @@ extension ProjectDetailView {
         @Published var iModelsWithExtents: [iModel] = []
         @Published var iModelsWithoutExtents: [iModel] = []
         @Published var showMap = false
+        @Published var isLoading = false
         
         var selectediModel: iModel? {
             didSet {
@@ -32,6 +33,8 @@ extension ProjectDetailView {
                 print("No link to iModels in this project")
                 return
             }
+            
+            isLoading = true
             if let imodels: iModels = await ITwinRequests.fetchObjects(url: iModelsHref) {
                 imodelList = imodels.iModels.sorted(by: { first, second in
                     if first.extent != nil { return true }
@@ -50,6 +53,7 @@ extension ProjectDetailView {
                 }
                 iModelsWithoutExtents = tmpImWithoutExtents
                 iModelsWithExtents = tmpImWithExtents
+                isLoading = false
             }
         }
     }

@@ -61,6 +61,7 @@ struct ProjectsList: View {
             }
         }
         .searchable(text: $searchString, placement: SearchFieldPlacement.navigationBarDrawer, prompt: Text("Search"))
+        .overlay(vm.isLoading ? FullScreenProgressView() : nil)
         .task {
             await vm.fetchProjects()
         }

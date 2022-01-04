@@ -87,6 +87,7 @@ struct ProjectDetailView: View {
                 }
             }
         }
+        .overlay(vm.isLoading ? FullScreenProgressView() : nil)
         .task {
             await vm.fetchIModels()
         }

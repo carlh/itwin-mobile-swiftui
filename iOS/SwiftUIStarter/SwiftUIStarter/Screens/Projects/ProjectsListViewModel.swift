@@ -25,9 +25,12 @@ extension ProjectsList {
         
         @Published var projectsList: [Project] = []
         
+        @Published var isLoading = false
+        
         private var projects: Projects? = nil
         
         func fetchProjects() async {
+            isLoading = true
             do {
                 switch listMode {
                     case .favorites:
@@ -42,9 +45,10 @@ extension ProjectsList {
                     projectsList.removeAll()
                     projectsList.append(contentsOf: projects.projects)
                 }
-                
+                isLoading = false
             } catch {
                 print("Failed to parse projects in viewmodel \(error.localizedDescription)")
+                isLoading = false
             }
         }
         

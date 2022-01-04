@@ -38,6 +38,7 @@
 		C3E296D1277CFBD60010F5ED /* iTwinMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */; };
 		C3E296DA277E03ED0010F5ED /* iModelLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296D9277E03ED0010F5ED /* iModelLocationMapView.swift */; };
 		C3E296DC277E046F0010F5ED /* iModelLocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E296DB277E046F0010F5ED /* iModelLocationMapViewModel.swift */; };
+		C3EBB11A278492BF002BC9F0 /* FullScreenProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EBB119278492BF002BC9F0 /* FullScreenProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		C3E296D0277CFBD60010F5ED /* iTwinMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTwinMessages.swift; sourceTree = "<group>"; };
 		C3E296D9277E03ED0010F5ED /* iModelLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelLocationMapView.swift; sourceTree = "<group>"; };
 		C3E296DB277E046F0010F5ED /* iModelLocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iModelLocationMapViewModel.swift; sourceTree = "<group>"; };
+		C3EBB119278492BF002BC9F0 /* FullScreenProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		C3B2F71A277B577F0023FAC7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C3EBB118278492A3002BC9F0 /* Components */,
 				C3B2F71B277B578E0023FAC7 /* CustomErrors.swift */,
 			);
 			path = Utilities;
@@ -232,6 +235,14 @@
 				C3B2F724277B6DB60023FAC7 /* iModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C3EBB118278492A3002BC9F0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C3EBB119278492BF002BC9F0 /* FullScreenProgressView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +367,7 @@
 				5FD7518326DD9D4C00DC3060 /* DocumentPicker.swift in Sources */,
 				C3B2F729277B9F2C0023FAC7 /* ProjectsListViewModel.swift in Sources */,
 				C3B2F72E277BAFD10023FAC7 /* iModelViewModel.swift in Sources */,
+				C3EBB11A278492BF002BC9F0 /* FullScreenProgressView.swift in Sources */,
 				C3CD1CD9277A423200ACFE0F /* Project.swift in Sources */,
 				C3CD1CD4277A2EED00ACFE0F /* UIApplication+Ext.swift in Sources */,
 				5FDD749626CDA9520007FBC6 /* SwiftUIStarterApp.swift in Sources */,
