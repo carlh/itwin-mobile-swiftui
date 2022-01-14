@@ -42,13 +42,8 @@ export const prodIssuerUrl = 'https://ims.bentley.com/';
   };
   await IOSHost.startup(options);
   setTimeout(() => {
-    // MobileHost.device.authInit({ issuerUrl, clientId, redirectUri, scope }, (err) => {
-    //   if (err)
-    //     console.log(`AuthInit ${err}`);
-    //   // MobileHost.authorization.signIn();
-    // });
     const getAccessToken = (accessToken?: String, error?: String) => {
-      console.log(`Tried to get access token ${accessToken}`);
+      console.log(`Tried to get access token ${accessToken}, error: ${error}`);
     };
     MobileHost.device.authGetAccessToken(getAccessToken);
   }, 1000);
