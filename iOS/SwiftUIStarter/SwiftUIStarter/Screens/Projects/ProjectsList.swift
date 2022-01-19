@@ -41,6 +41,9 @@ struct ProjectsList: View {
                         }
                     }
                 }
+                if vm.hasMoreProjects {
+                    loadMoreButton
+                }
             } header: {
                 VStack(alignment: .leading) {
                     Text("Project View")
@@ -76,6 +79,31 @@ struct ProjectsList: View {
             }
         }
     }
+    
+    var loadMoreButton: some View {
+        HStack {
+            Spacer()
+            
+            Button {
+                Task {
+                    await vm.fetchNextBatchOfProjects()
+                }
+            } label: {
+                Label {
+                    Text("Load next")
+                } icon: {
+                    Image(systemName: "square.and.arrow.down")
+                        .foregroundColor(.green)
+                }
+            }
+            .tint(.green)
+            .buttonStyle(.bordered)
+            
+            Spacer()
+        }
+        .padding()
+    }
+    
 }
 
 struct ProjectsList_Previews: PreviewProvider {

@@ -27,7 +27,7 @@ extension ProjectsList {
         
         @Published var isLoading = false
         
-        private var projects: Projects? = nil
+        @Published var projects: Projects? = nil
         
         func fetchProjects() async {
             isLoading = true
@@ -64,18 +64,25 @@ extension ProjectsList {
             return try await ITwinRequests.favoriteProjects()
         }
         
-        private func fetchNextBatchOfProjects(from batch: Projects ) async {
-            guard let nextProp = batch.links?.next, let nextUrl = nextProp.href else {
+        var hasMoreProjects: Bool {
+            if listMode != .all {
+                return false  // This is due to a bug in the API that breaks the links for favorites and recents.  This can be removed once the bug is fixed.
+            }
+            return projects?.links?.next?.href != nil
+        }
+        
+        func fetchNextBatchOfProjects() async {
+            guard let batch = projects, let nextProp = batch.links?.next, let nextUrl = nextProp.href else {
                 return
             }
             
+            isLoading = true
             let nextProjects: Projects? = await ITwinRequests.fetchObjects(url: nextUrl)
-            if let projects = nextProjects {
-                projectsList.append(contentsOf: projects.projects)
-                if let _ = projects.links?.next {
-                    await fetchNextBatchOfProjects(from: projects)
-                }
+            if let nextProjects = nextProjects {
+                projectsList.append(contentsOf: nextProjects.projects)
+                projects = nextProjects
             }
+            isLoading = false
         }
     }
 }
