@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension ProjectsList {
     @MainActor class ViewModel: ObservableObject {
@@ -43,7 +44,9 @@ extension ProjectsList {
                 
                 if let projects = projects {
                     projectsList.removeAll()
-                    projectsList.append(contentsOf: projects.projects)
+                    withAnimation {
+                        projectsList.append(contentsOf: projects.projects)
+                    }
                 }
                 isLoading = false
             } catch {
@@ -79,8 +82,10 @@ extension ProjectsList {
             isLoading = true
             let nextProjects: Projects? = await ITwinRequests.fetchObjects(url: nextUrl)
             if let nextProjects = nextProjects {
-                projectsList.append(contentsOf: nextProjects.projects)
-                projects = nextProjects
+                withAnimation {
+                    projectsList.append(contentsOf: nextProjects.projects)
+                    projects = nextProjects
+                }
             }
             isLoading = false
         }
